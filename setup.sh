@@ -26,7 +26,7 @@ install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
 sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
 # Update, Upgrade, Install seclists gron, gobuster, ffuf, golang, apt-transport-https and Clean
-echo "Running apt update, upgrade, install gron, gobuster, ffuf, golang, apt-transport-https and code. Ending with a clean and autoremove."
+echo "Running apt update, upgrade, install seclists, gron, gobuster, ffuf, golang, apt-transport-https and code. Ending with a clean and autoremove."
 apt-get update && \
 apt-get upgrade -y && \
 apt install -y seclists gron gobuster ffuf golang apt-transport-https && \
