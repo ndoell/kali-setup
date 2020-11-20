@@ -19,8 +19,11 @@ print() {
 # Check if running script with root privs.
 userID=`id -u`
 if [ "$userID" -ne 0 ]
-  then echo "Please run as root"
-  exit
+  then 
+  print "${COLOR_RED}"
+  print "Please run as root"
+  print "${COLOR_RESET}"
+  exit 1
 fi
 
 # Create a directory for any artifacts.
