@@ -14,6 +14,7 @@ Initial setup of Kali for pentesting/bug hunting.
   - ffuf: https://github.com/ffuf/ffuf
   - golang: https://golang.org/
   - RustScan: https://github.com/RustScan/RustScan
+  - Joplin: https://joplinapp.org/
   - Google Chrome
 - Sets up locate DB.
 

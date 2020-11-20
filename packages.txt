@@ -1,0 +1,7 @@
+gron
+ripgrep
+gobuster
+ffuf
+golang
+apt-transport-https
+joplin
