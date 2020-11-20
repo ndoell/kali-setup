@@ -26,7 +26,7 @@ Kali Setup Tool
 OPTIONS: 
         -h                 Display this help message.
         -n <user>          Create a non root user with sudo access.
-        -r                 Reset default kali use password.
+        -r                 Reset default kali user password.
         -i                 Update, Upgrade Install packages.
 ```
 
