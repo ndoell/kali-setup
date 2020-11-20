@@ -54,6 +54,7 @@ usage () {
       print "        -n <user>          Create a non root user with sudo access."
       print "        -r                 Reset default kali user password."
       print "        -i                 Update, Upgrade Install packages."
+      print "        -s                 Install and setup SSH Server."
       print "${COLOR_RESET}"
 }
 
@@ -71,7 +72,7 @@ adduser () {
     print "${COLOR_GREEN}"
     print "Creating user: $user"
     print "${COLOR_RESET}"
-    useradd -m $user -s /bin/bash; passwd $user; usermod -a -G sudo $user
+    useradd -m $USER -s /bin/bash; passwd $user; usermod -a -G sudo $user
   fi
 }
 
