@@ -18,7 +18,7 @@ usage () {
       echo "OPTIONS: "
       echo "        -h                 Display this help message."
       echo "        -n <user>          Create a non root user with sudo access."
-      echo "        -r                 Reset default kali use password."
+      echo "        -r                 Reset default kali user password."
       echo "        -i                 Update, Upgrade Install packages."
       exit 0
 }
