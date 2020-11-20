@@ -34,7 +34,7 @@ OPTIONS:
 To Do:
 1. Add https://github.com/cddmp/enum4linux-ng
 2. Add Joplin + Pentest Template
-3. Usefull aliases.
+3. Useful aliases.
 4. Possibly MobSF/Android Studio.
 5. Add tool guide.
 6. Add https://github.com/SecureAuthCorp/impacket stuff.
