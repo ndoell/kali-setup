@@ -35,3 +35,4 @@ To Do:
 2. Add Joplin + Pentest Template
 3. Usefull aliases.
 4. Possibly MobSF/Android Studio.
+5. Add tool guide.
