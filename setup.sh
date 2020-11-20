@@ -29,11 +29,17 @@ fi
 # Create a directory for any artifacts.
 if [ -d "work/" ] 
 then
-    # Remove Dir
+    # Remove Dir if it exist.
+    print "${COLOR_GREEN}"
+    print "Found work directory, removing it."
     rm -rf work 
+    print "${COLOR_RESET}"
 else
+    print "${COLOR_GREEN}"
+    print "Creating work directory in the current path."
     mkdir -p work/
     cd work
+    print "${COLOR_RESET}"
 fi
 
 
@@ -53,46 +59,53 @@ usage () {
 
 adduser () {
   # Add User
-  user=$1
+  USER=$1
 
   # Check if the user already exist.
-  getent passwd $user  > /dev/null
+  getent passwd $USER  > /dev/null
   if [ $? -eq 0 ]; then
-    echo "This user already exist"
+    print "${COLOR_RED}"
+    print "The user: ${USER} already exist"
+    print "${COLOR_RESET}"
   else
-    echo "Creating user: $user"
+    print "${COLOR_GREEN}"
+    print "Creating user: $user"
+    print "${COLOR_RESET}"
     useradd -m $user -s /bin/bash; passwd $user; usermod -a -G sudo $user
   fi
 }
 
 resetpw () {
     # Resetting default kali user password.
-    echo "Resetting default kali user account password."
+    print "${COLOR_GREEN}"
+    print "Resetting default kali user account password."
+    print "${COLOR_RESET}"
     passwd kali
 }
 
 letsgo () {
 
     # VSCode keys
-    echo "Grabbing VSCode GPG key"
+    print "${COLOR_GREEN}"
+    print "Grabbing VSCode GPG key"
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
     install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
     sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
     # Install RustScan
-    echo "Intalling RustScan. (Might change this to source and compile to get the latest and not worry about updating versions.)"
+    print "Intalling RustScan. (Might change this to source and compile to get the latest and not worry about updating versions.)"
     RUSTSCANRLS="https://github.com/RustScan/RustScan/releases/download/2.0.1"
     RUSTSCANDEB="rustscan_2.0.1_amd64.deb"
     curl -LJO $RUSTSCANRLS/$RUSTSCANDEB
     dpkg -i $RUSTSCANDEB
 
     # Install Google Chrome
-    echo "Installing current stable Google Chrome."
+    pirnt "Installing current stable Google Chrome."
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     apt install ./google-chrome-stable_current_amd64.deb
 
     # Update, Upgrade, Install seclists gron, gobuster, ffuf, golang, apt-transport-https and Clean
-    echo "Running apt update, upgrade, installing ${PACKAGES} and code. Ending with a clean and autoremove."
+    print "Running apt update, upgrade, installing ${PACKAGES} and code. Ending with a clean and autoremove."
     apt-get update && \
     apt-get upgrade -y && \
     cat ../packages.txt | xargs apt-get install -y && \
@@ -102,24 +115,58 @@ letsgo () {
     apt-get autoremove
 
     # Update locate
+    print "Updating locate"
     updatedb
+    print "${COLOR_RESET}"
+
+}
+
+setupssh () {
+  print "${COLOR_GREEN}"
+  print "Install openssh-server just incase you don't have it."
+  apt-get install openssh-server
+
+  print "Backup default keys"
+  mkdir /etc/ssh/default_keys
+  mv /etc/ssh/ssh_host_* /etc/ssh/default_keys/
+
+  print "Generate new keys."
+  dpkg-reconfigure openssh-server
+
+  print "Further configure SSH here: /etc/ssh/sshd_config."
+
+  print "Starting SSH Service"
+  service ssh start
+
+  print "Enabling SSH service after reboots."
+  systemctl enable ssh.service
+
+  print ""
+  print ""
+  print "Print current SSH Status"
+  service ssh status
+  print "${COLOR_RESET}"
+
 }
 
 runit=false
-while getopts ":hn:ri" opt; do
+while getopts ":hn:ris" opt; do
   case ${opt} in
     h )
       usage
       ;;
     n )
-      user=$OPTARG
-      adduser $user
+      USER=$OPTARG
+      adduser $USER
       ;;
     r )
       resetpw
       ;;
     i )
       runit=true
+      ;;
+    s )
+      setupssh
       ;;
     \? )
       echo "Invalid Option: -$OPTARG" 1>&2
@@ -140,6 +187,7 @@ then
     # Get all the good stuff.
     letsgo
 fi
-
-# Clean up work directory
+print "${COLOR_GREEN}"
+print "Clean up work directory"
+print "${COLOR_RESET}"
 cd ..; rm -rf work
