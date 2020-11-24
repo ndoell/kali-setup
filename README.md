@@ -29,6 +29,7 @@ OPTIONS:
         -n <user>          Create a non root user with sudo access.
         -r                 Reset default kali user password.
         -i                 Update, Upgrade Install packages.
+        -s                 Install and setup SSH Server.
 ```
 
 To Do:
