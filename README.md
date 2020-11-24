@@ -20,7 +20,7 @@ Initial setup of Kali for pentesting/bug hunting.
 
 ## Running
 ```bash
-Usage: ./setup.sh [OPTIONS] [ARGS]
+Usage:sudo ./setup.sh [OPTIONS] [ARGS]
 
 Kali Setup Tool
 
