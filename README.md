@@ -37,5 +37,11 @@ To Do:
 2. Add Joplin + Pentest Template
 3. Useful aliases.
 4. Possibly MobSF/Android Studio.
-5. Add tool guide.
+5. Add tool guide/tutorials.
+   - tmux
+   - gron
+   - rigrep
+   - gobuster
+   - ffuf
+   - rustscan
 6. Add https://github.com/SecureAuthCorp/impacket stuff.
