@@ -45,3 +45,5 @@ To Do:
    - ffuf
    - rustscan
 6. Add https://github.com/SecureAuthCorp/impacket stuff.
+7. Add https://github.com/filedescriptor/untrusted-types.
+   - untrusted-types video: https://www.youtube.com/watch?v=CNNCCgDkt5k
