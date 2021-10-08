@@ -2,6 +2,8 @@
 
 #set -x
 
+export DEBIAN_FRONTEND=noninteractive
+
 COLOR_RED=`tput setaf 1`
 COLOR_GREEN=`tput setaf 2`
 COLOR_YELLOW=`tput setaf 3`
@@ -118,6 +120,7 @@ letsgo () {
     # Update locate
     print "Updating locate"
     updatedb
+    print "You should probably `sudo reboot`"
     print "${COLOR_RESET}"
 
 }
