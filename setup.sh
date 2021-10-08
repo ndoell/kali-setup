@@ -105,7 +105,7 @@ letsgo () {
     # Install Google Chrome
     pirnt "Installing current stable Google Chrome."
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    apt install ./google-chrome-stable_current_amd64.deb
+    apt install -y ./google-chrome-stable_current_amd64.deb
 
     # Update, Upgrade, Install seclists gron, gobuster, ffuf, golang, apt-transport-https and Clean
     print "Running apt update, upgrade, installing ${PACKAGES} and code. Ending with a clean and autoremove."
